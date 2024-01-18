@@ -1,0 +1,41 @@
+<!-- Login/Logout Section -->
+<div class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <i class="bi bi-journal-text mr-2"></i> System USOS
+    </a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" id="userDropdown" ngbDropdownToggle>
+            <i class="fas fa-user-circle mr-2"></i>
+            <span class="user-text">
+              <ng-container *ngIf="isAuthenticated; else notLoggedIn">{{ (auth.user$ | async)?.name }}</ng-container>
+            </span>
+            <ng-template #notLoggedIn>Gość(niezalogowany)</ng-template>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="userDropdown">
+            <li class="dropdown-item">
+              <app-auth-button></app-auth-button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-7">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
